@@ -25,7 +25,7 @@
 					$amount = $_POST['deposit'];
 					$amount = intval($amount);
 					if($amount > 1336){
-						$result = ["flag"=>"WH2019{1npuT_r4ng3_v4L1dation_1s_1mp0t4nt}"];
+						$result = ["flag"=>"flag{5555555555555_I_told_you_input_validation_important!!!!5555555}"];
 						
 						echo "<div class=\"alert alert-success\" role=\"alert\">
 						  <center>".$result['flag']."<center>
@@ -45,7 +45,7 @@
 				}
 				else{
 					echo "<div class=\"alert alert-primary\" role=\"alert\">
-						  <center>BANK OF WHITEHACKS<center><br>
+						  <center>BANK OF GLADIATOR<center><br>
 						    <img src=\"money.png\" height=\"150\" width=\"100\">
 						    <img src=\"money.png\" height=\"150\" width=\"100\">
 						    <img src=\"money.png\" height=\"150\" width=\"100\">

@@ -16,7 +16,7 @@ if(!empty($_POST['submit']) && isset($_POST['submit']) && isset($_SESSION['time_
 	$c = $b - $_SESSION['time_now'];
 	if($c < 0.5){
 		if($var === $_SESSION['question']){
-			echo 'WH2019{1_l0v3_c4ptch4!!!!!}';
+			echo 'flag{y0u_n0_n33d_m3_buT_i_n33d_y000000u!!!!!}';
 		}
 		else{
 			echo "WRONG";

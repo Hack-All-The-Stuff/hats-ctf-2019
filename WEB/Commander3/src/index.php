@@ -25,7 +25,7 @@
 	<title></title>
 </head>
 <body>
-	COMMANDER 3<br>
+	COMMANDO 3<br>
 	HAH! I HAVE WAFu NOW!<br>
 	GET me a 'cmd'<br>
 	You can also GET 'SRC' if you want to..
