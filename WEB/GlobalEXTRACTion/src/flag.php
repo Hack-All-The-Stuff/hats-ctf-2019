@@ -1,5 +1,5 @@
 <?php
 
-$flag = "WH2019{Going_Global_Or_Going_NUTTSSSS}";
+$flag = "flag{blobal_global_flobal}";
 
 ?>

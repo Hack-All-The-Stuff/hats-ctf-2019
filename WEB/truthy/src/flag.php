@@ -1,5 +1,5 @@
 <?php
 
-$flag = "WH2019{the_truth_shall_b3_in_your_hands}";
+$flag = "flag{flash_back_from_whitehacks2019}";
 
 ?>

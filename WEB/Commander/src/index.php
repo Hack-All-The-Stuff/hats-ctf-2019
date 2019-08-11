@@ -21,7 +21,7 @@
 	<title></title>
 </head>
 <body>
-	COMMANDER<br>
+	COMMANDO<br>
 	GET me a 'cmd'<br>
 	You can also GET 'SRC' if you want to..
 </body>

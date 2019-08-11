@@ -28,7 +28,7 @@
 	<title></title>
 </head>
 <body>
-	COMMANDER 2<br>
+	COMMANDO 2<br>
 	HAH! I HAVE DEFENCES NOW!<br>
 	GET me a 'cmd'<br>
 	You can also GET 'SRC' if you want to..
