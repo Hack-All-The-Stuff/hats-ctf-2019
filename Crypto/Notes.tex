@@ -1,11 +1,12 @@
 \documentclass{report}
-\usepackage{amsmath,array,hyperref,amssymb,mathrsfs}
+\usepackage{amsmath,array,hyperref,amssymb,mathrsfs,listings,physics}
 \setlength{\parindent}{0pt}
 \hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
 \newcommand{\tmod}{\text{mod }}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
+\lstset{language=python}
 \title{Notes on cryptography}
 \author{Ariana}
 \date{\today}
@@ -204,14 +205,71 @@ Here $\phi(n)$ is the Euler's totient function.
 \chapter{Abstract algebra}
 Abstract algebra is a branch of mathematics that focus on the structure of objects. Such objects include groups, fields, algebras, and many more.
 
+Recommended readings:
+
+\begin{itemize}
+	\item I. N. Herstein - Topics in algebra
+	\item N. Jacobson - Basic algebra
+\end{itemize}
+
 \section{Group}
-//group axioms
 
-//basic properties
+A group is a set $G$, along with a operator $\cdot$ defined by $4$ axioms:
 
-//group order
+\begin{itemize}
+	\item If $a,b\in G$, then $a\cdot b\in G$
+	\item $(a\cdot b)\cdot c=a\cdot(b\cdot c)$
+	\item There exists an element $e\in G$ such that $e\cdot a=a=a\cdot e$
+	\item For every $a\in G$, there exists an element $a^{-1}$ such that $a\cdot a^{-1}=e$
+\end{itemize}
 
-//lagrange theorem
+A few properties come directly from this axioms:
+
+\begin{corollary}
+	$e$ is unique
+\end{corollary}
+
+\begin{corollary}
+	$$a\cdot a^{-1}=a^{-1}\cdot a$$
+	Note that it isn't necessary that $a\cdot b=b\cdot a$
+\end{corollary}
+
+If $a\cdot b=b\cdot a$ for all $a,b\in G$, this is known as a \textbf{abelian group}
+
+The \textbf{order} of a group is simply the number of elements in it. We denote the order of a group $G$ as $o(G)$, alternatively using a similar notation to the cardinality of a set, $|G|$
+
+\subsection{Subgroups and cosets}
+
+A \textbf{subgroup} is simply a subset of the group that is a group, for example, the the even integers is a subgroup of the integers under addition.
+
+Suppose we have a subgroup $H$ of $G$, if we select an element $a\notin H$, we define the sets:
+$$aH=\{ah|h\in H\}$$
+$$Ha=\{ha|h\in H\}$$
+as the \textbf{left and right cosets} respectively. 'coset' will usually refer to the right coset
+
+\begin{corollary}
+	$|aH|=|Ha|=|H|$
+\end{corollary}
+
+\begin{corollary}
+	(Left) cosets are either identical or completely disjoint 
+\end{corollary}
+
+Now we can proceed to proceed to proof one of the most important theorems in group theory, Lagrange theorem.
+
+\begin{theorem}
+	Let $H$ be a subgroup of $G$, then $o(H)|o(G)$
+\end{theorem}
+
+Suppose there are $k$ distinct cosets of $H$.
+
+Since $e$ is in $H$, the union of all the cosets must be $G$.
+
+All cosets are also either distinct or identical, so the union of all $k$ distinct cosets must be $G$.
+
+Since the cosets are distinct, the size is simply the sum of the individual cosets, therefore
+$$ko(H)=o(G)$$
+
 \section{Lattices(groups)}
 //what are lattices even
 
@@ -270,7 +328,7 @@ $$h\equiv q^{-1}\left(m_p-m_q\right)\pmod p$$
 \subsection{Multiple primes}
 \section{Attacks}
 There are quite a few of attacks on RSA if the system is improperly setup:
-\begin{enumerate}
+\begin{itemize}
 	\item Small $n$/Week $p$
 	\item Small $d$
 	\item Small $p-q$
@@ -285,14 +343,37 @@ There are quite a few of attacks on RSA if the system is improperly setup:
 	\item Timing attack
 	\item Power trace
 	\item Fault attack
-\end{enumerate}
-https://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf is lit too
+\end{itemize}
+
+\subsection{Important papers}:
+
+\begin{itemize}
+	\item https://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf contains most of the attacks on RSA
+\end{itemize}
+
 \subsection{Small $n$}
-Factor $n$, use yafu or  Alpertron onine factorization or factordb
+To factor $n$, I suggest using yafu, Alpertron online factorization or looking up on factordb(may also work for larger primes)
 \subsection{Small $d$}
 //wiener atk
 \subsection{Small $p-q$}
-//fermat
+The basic attack for this is \textbf{Fermat factorization}.
+
+Notice that $$(a+b)(a-b)=a^2-b^2$$
+
+Thus if we can find $a,b$ such that $a^2-N=b^2$, we have factored $N$. 
+
+\begin{lstlisting}
+def fermat(n):
+	a=ceil(sqrt(n))
+	b2=a*a-n
+	while !is_square(b2):
+		a+=1
+		b2=a*a-n
+	b=sqrt(b2)
+	return (a-b,a+b)
+\end{lstlisting}
+
+There are several other speedups to this method.
 
 //https://eprint.iacr.org/2009/318.pdf
 \subsection{Partial $d$ exposure}
@@ -310,9 +391,18 @@ Factor $n$, use yafu or  Alpertron onine factorization or factordb
 
 //Bleichenbacher
 \subsection{Constant $n,m$ different $e$}
-//actually normal math using bezout
+Suppose we are given $c_1=m^{e_1}\pmod n$ and $c_2=m^{e_2}\pmod n$. 
+
+Using B\'ezout's identity, we compute $a,b$ such that $ae_1+be_2=1$, then we compute $$c_1^ac_2^b=m^{ae_1}m^{be_2}=m\pmod n$$
+
 \subsection{Constant $e,m$ different $n$}
-//actually normal crt
+
+The idea of this comes from when $m$ is small, we can easily take the $e$th root.
+
+For example, $c=6369690780153,e=3,n=25160293800283$, we can take the cube root of $c$ and get $m=0\text{x}4869=$`Hi'. If we were given multiple $m^e mod n_i$, we can `increase' the modulus using chinese remainder theorem
+
+Suppose we receive $c_i=m^e\pmod n_i$ for $e$ such $i$, we can simply use CRT to find $c=m^e\pmod \Pi_i n_i$, and take the $e$th root of $c$, since $m<n$, so $m^e\lessapprox\Pi_in_i$.
+
 \subsection{Constant $e$, related $m$, different $n$}
 //ok now have magic with Hastad or FR atks
 \subsection{Timing attack}
@@ -327,6 +417,48 @@ lol just f up one of the crt modulos ez
 algebraic geometry hell here we go
 \part{Quantum cryptography}
 \chapter{Basic theory of qubits}
+Qubits are like normal bits, but probabilistic and much harder to imagine. We represent qubits as probability density, as compared to classical probability.
+
+\section{States}
+
+We represent states with \textbf{ket vectors}. This notation will become clear once more quantum theory is introduced.
+
+For a given state $A$, we call the state $\ket{A}$. Qubits have $2$ states, $0$ and $1$, $\ket{0}$ and $\ket{1}$ respectively.
+
+Classically we think of probability as a real positive number less than $1$, however for qubits, it's easier to think in terms of \textbf{probability density}, which can be complex. The probability of an event occurring is given by the square of the probability density.
+
+Basic properties of probability density:
+\begin{enumerate}
+	\item A complex number with magnitude less than $1$
+	\item The chance is given by the squared magnitude of the probability density
+	\item Squared sum is $1$(square then sum)
+\end{enumerate}
+
+A general qubit, $\ket{\psi}$ has some chance of being $\ket{0}$ and some chance of being $\ket{1}$, we represent this as 
+$$\ket{\psi}=\alpha\ket{0}+\beta\ket{1}$$
+where $P(\ket{0})=|\alpha|^2$, $P(\ket{1})=|\beta|^2$
+
+Now rewriting this into the more familiar vector notation, we can represent $\ket{0}$ as $\begin{pmatrix}1\\0\end{pmatrix}$ and $\ket{1}$ as $\begin{pmatrix}0\\1\end{pmatrix}$, so a arbitrary quantum state is written as
+$$\ket{\psi}=\begin{pmatrix}\alpha\\\beta\end{pmatrix}$$
+
+Now we introduce the dual of the ket notation, the \textbf{bra vector}. These forms a bra-c-ket when placed together. The bra is written as the opposite of a ket, $\bra{0}$, and it's defined as(using vectors)
+
+$$\bra{\psi}=\ket{\psi}^\dagger$$
+
+where $\dagger$ represents conjugate transpose(complex conjugate and transpose)
+
+So $\bra{\psi}=\begin{pmatrix}\alpha^*&\beta^*\end{pmatrix}$, and when we place them together, we get
+
+$$\braket{\psi}{\psi}=\begin{pmatrix}\alpha^*&\beta^*\end{pmatrix}\begin{pmatrix}\alpha\\\beta\end{pmatrix}=|\alpha|^2+|\beta|^2=1$$
+
+//projecting stuff with braket
+
+//multiqubit state
+
+//entanglement ayy
+
+//chsh with the funky integration proof
+
 \chapter{BB84}
 \chapter{E91}
 \part{Post-quantum crypto}
