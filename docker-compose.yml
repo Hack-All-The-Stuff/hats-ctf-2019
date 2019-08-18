@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  web_commander:
+    build: ./WEB/Commander
+    ports:
+      - "1337:80"
+  web_commander2:
+    build: ./WEB/Commander2
+    ports:
+      - "1338:80"
