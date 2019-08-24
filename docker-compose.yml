@@ -9,3 +9,12 @@ services:
     build: ./web/Commander2
     ports:
       - "1338:80"
+  bof1:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=bof1
+        - BINARY_DIR=./pwn/bof1
+    ports:
+      - "1301:9999"
