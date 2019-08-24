@@ -2,7 +2,10 @@ from pwn import *
 
 path = './bof3'
 # Open local process for debugging
-p = process(path)
+if args.REMOTE:
+    p = remote('localhost', 1303)
+else:
+    p = process(path)
 # Open the file as a ELF so that we can extract information
 # without hardcoding. e.g. we can resolve the address of system in the GOT
 e = ELF(path)

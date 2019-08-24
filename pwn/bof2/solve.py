@@ -2,7 +2,10 @@ from pwn import *
 
 path = './bof2'
 # Open local process for debugging
-p = process(path)
+if args.REMOTE:
+    p = remote('localhost', 1302)
+else:
+    p = process(path)
 # Open the file as a ELF so that we can extract information
 # without hardcoding. e.g. we can resolve the address of getflag
 # without opening our debugger (ofc, the address will change if the binary is actually a PIE binary)
