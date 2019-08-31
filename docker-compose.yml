@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  static_files:
+    build:
+      context: .
+      dockerfile: Dockerfile-files
+    ports:
+      - "80:80"
+
+  web_commander:
+    build: ./web/Commander
+    ports:
+      - "1337:80"
+  web_commander2:
+    build: ./web/Commander2
+    ports:
+      - "1338:80"
+
+  bof1:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=bof1
+        - BINARY_DIR=./pwn/bof1
+    ports:
+      - "1301:9999"
+  bof2:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=bof2
+        - BINARY_DIR=./pwn/bof2
+    ports:
+      - "1302:9999"
+  bof3:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=bof3
+        - BINARY_DIR=./pwn/bof3
+    ports:
+      - "1303:9999"

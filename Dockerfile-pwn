@@ -1,0 +1,10 @@
+FROM eadom/ctf_xinetd:latest
+ARG BINARY
+ARG BINARY_DIR
+
+ENV BINARY $BINARY
+ENV BINARY_DIR $BINARY_DIR
+
+RUN rm flag helloworld
+COPY $BINARY_DIR /home/ctf/
+RUN sed -i s/helloworld/$BINARY/ /etc/xinetd.d/ctf

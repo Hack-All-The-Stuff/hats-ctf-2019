@@ -1,0 +1,21 @@
+FROM nginx
+ENV FILES=/usr/share/nginx/html
+
+# put files here
+# plz categorize them according to challenge
+#
+COPY ./pwn/bof1/bof1 $FILES/bof1/bof1
+
+COPY ./pwn/bof2/bof2 $FILES/bof2/bof2
+
+COPY ./pwn/bof3/bof3 $FILES/bof3/bof3
+
+COPY ./pwn/bof4/bof4 $FILES/bof4/bof4
+
+COPY ./pwn/bof5/bof5 $FILES/bof5/bof5
+
+COPY ./pwn/Format\ Shop/shop $FILES/shop/shop
+
+COPY ./pwn/HeapSchool/heapschool $FILES/heapschool/heapschool
+
+
