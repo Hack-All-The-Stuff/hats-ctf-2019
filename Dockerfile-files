@@ -1,0 +1,11 @@
+FROM nginx
+ENV FILES=/usr/share/nginx/html
+
+# put files here
+# plz categorize them according to challenge
+#
+COPY ./pwn/bof1/bof1 $FILES/bof1/bof1
+
+COPY ./pwn/bof2/bof2 $FILES/bof2/bof2
+
+

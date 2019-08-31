@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  static_files:
+    build:
+      context: .
+      dockerfile: Dockerfile-files
+    ports:
+      - "80:80"
+
   web_commander:
     build: ./web/Commander
     ports:
