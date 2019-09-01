@@ -9,4 +9,5 @@ for i in range(9**2):
 
 ce = crt(c,n)
 
-print ce.nth_root(733)
+print ce.nth_root(733).hex().decode('hex')
+
