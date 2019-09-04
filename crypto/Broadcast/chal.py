@@ -11,8 +11,9 @@ def genrsa(m, e, l):
 dataf = open('data','w')
 
 e = next_prime(9**3)
+m = int(flag.encode('hex'), 16)
 for _ in range(9**2):
-    c, N = genrsa(flag,e,1024)
+    c, N = genrsa(m, e, 1024)
     dataf.write("%d\n%d\n\n" % (c, N))
 
 dataf.close()
