@@ -65,6 +65,6 @@ for i in f:
         pt = pt.decode('hex')
     except:
         continue
-    if('flag' in pt):
+    if('HATS' in pt):
         print pt
 
