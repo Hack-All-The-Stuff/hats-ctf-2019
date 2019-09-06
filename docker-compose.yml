@@ -22,6 +22,31 @@ services:
     build: ./web/Commander5
     ports:
       - "1341:80"
+  truthy:
+    build: ./web/truthy
+    ports:
+      - "1342:80"
+  sourcerer:
+    build: ./web/Sourcerer
+    ports:
+      - "1343:80"
+  niftyhashing:
+    build: ./web/NiftyHashing
+    ports:
+      - "1344:80"
+  extraction:
+    build: ./web/GlobalEXTRACTion
+    ports:
+      - "1345:80"
+  captcha:
+    build: ./web/CaptchyCaptcha
+    ports:
+      - "1346:80"
+  bank:
+    build: ./web/BankOfWhitehacks
+    ports:
+      - "1347:80"
+
 
   bof1:
     build:
