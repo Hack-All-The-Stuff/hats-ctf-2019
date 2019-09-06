@@ -1,4 +1,5 @@
 int main() {
+    printf("Enter flag: ");
     char input[256];
     scanf("%256s", input);
     if (strcmp(input, "flag{so_easy}") == 0) {
