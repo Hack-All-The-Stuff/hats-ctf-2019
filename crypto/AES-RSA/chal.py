@@ -1,13 +1,13 @@
 from secret import flag
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
+from Crypto.Util.number import getPrime
 from os import urandom
-from gmpy2 import next_prime
 
 key = urandom(16)
 while True:
-    p = next_prime(int(urandom(64).encode('hex'),16))
-    q = next_prime(int(urandom(64).encode('hex'),16))
+    p = getPrime(512)
+    q = getPrime(512)
     if(p%3==0 or q%3==0):
         continue
     break
