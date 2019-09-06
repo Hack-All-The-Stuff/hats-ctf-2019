@@ -1,6 +1,20 @@
 from secret import flag
 from random import randint
-from gmpy2 import gcd, next_prime
+from Crypto.Util.number import isPrime, GCD
+
+def next_prime(s):
+    if s%6 == 0:
+        s += 1
+    elif s%6 != 1:
+        s = s - s%6 + 5
+    while True:
+        if isPrime(s) == True:
+            break
+        s+=2
+        if isPrime(s) == True:
+            break
+        s+=4
+    return s
 
 def genrsa(s):
     e = 65537
@@ -8,7 +22,7 @@ def genrsa(s):
         r = randint(0, 4**s)
         p = next_prime(r)
         q = next_prime(r + randint(1, 2**s))
-        if gcd(p-1, e) == gcd(q-1, e) == 1:
+        if GCD(p-1, e) == GCD(q-1, e) == 1:
             return p * q, 2*e
 
 def enc(m, e, n):
@@ -31,5 +45,5 @@ Here is the encrypted flag: ''' + enc(flag, e, n)
         c = enc(m, e, n)
         print "Cipher: " + c
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

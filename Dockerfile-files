@@ -18,4 +18,12 @@ COPY ./pwn/Format\ Shop/shop $FILES/shop/shop
 
 COPY ./pwn/HeapSchool/heapschool $FILES/heapschool/heapschool
 
+COPY ./crypto/AES-RSA/chal.py $FILES/AES-RSA/chal.py
 
+COPY ./crypto/Broadcast/chal.py $FILES/Broadcast/chal.py
+
+COPY ./crypto/Broadcast/data $FILES/Broadcast/data
+
+COPY ./crypto/Irreducible/chal.py $FILES/Irreducible/chal.py
+
+COPY ./crypto/Residues/chal.py $FILES/Residues/chal.py
