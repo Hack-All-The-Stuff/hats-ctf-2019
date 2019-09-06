@@ -14,7 +14,7 @@ if __name__ == "__main__":
         exit(0)
 
     p = binascii.hexlify(pw[0:5])
-    if int(b"0x" + p, 0) != 0x666c61677b:
+    if int(b"0x" + p, 0) != 0x484154537b:
         print("WRONG1")
         exit(0)
 
