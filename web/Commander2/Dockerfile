@@ -3,6 +3,7 @@ COPY src/ /var/www/html/
 RUN mkdir /flag
 COPY flag/ /flag
 RUN chmod -R 775 /flag
+RUN chmod -R 775 /var/www
 RUN chown -R root:root /var/www/
 RUN chown -R root:root /flag
 EXPOSE 80
