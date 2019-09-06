@@ -26,10 +26,10 @@ services:
     build: ./web/truthy
     ports:
       - "1342:80"
-  sourcerer:
-    build: ./web/Sourcerer
-    ports:
-      - "1343:80"
+  # sourcerer:
+  #   build: ./web/Sourcerer
+  #   ports:
+  #     - "1343:80"
   niftyhashing:
     build: ./web/NiftyHashing
     ports:
