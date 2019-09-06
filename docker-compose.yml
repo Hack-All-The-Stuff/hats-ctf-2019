@@ -16,6 +16,18 @@ services:
     build: ./web/Commander2
     ports:
       - "1338:80"
+  web_commander3:
+    build: ./web/Commander3
+    ports:
+      - "1339:80"
+  web_commander4:
+    build: ./web/Commander4
+    ports:
+      - "1340:80"
+  web_commander5:
+    build: ./web/Commander5
+    ports:
+      - "1341:80"
 
   bof1:
     build:
@@ -44,3 +56,12 @@ services:
         - BINARY_DIR=./pwn/bof3
     ports:
       - "1303:9999"
+  ezprintf:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=ezprintf
+        - BINARY_DIR=./pwn/ezprintf
+    ports:
+      - "1304:9999"
