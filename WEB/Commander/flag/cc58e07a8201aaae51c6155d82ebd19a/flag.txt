@@ -1,0 +1,2 @@
+flag{there_was_one_night_there_was_no_light}
+
