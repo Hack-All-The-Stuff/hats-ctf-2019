@@ -31,5 +31,5 @@ Here is the encrypted flag: ''' + enc(flag, e, n)
         c = enc(m, e, n)
         print "Cipher: " + c
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

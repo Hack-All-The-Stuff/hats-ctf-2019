@@ -66,4 +66,6 @@ Here is an encrypted message using this service that I recieved:
         elif inp == '3':
             return 0
     return 0
-main()
+
+if __name__ == '__main__':
+    main()
