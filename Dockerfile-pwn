@@ -11,4 +11,4 @@ COPY $BINARY_DIR/flag /home/ctf/flag
 COPY $BINARY_DIR/$BINARY /home/ctf/$BINARY
 RUN chmod 644 /home/ctf/flag && chmod 755 /home/ctf/$BINARY
 RUN sed -i s/helloworld/$BINARY/ /etc/xinetd.d/ctf
-RUN ${DISABLE_ASLR} && setarch `uname -m` -R /home/ctf/$BINARY
+RUN if [ ${DISABLE_ASLR} ]; then setarch `uname -m` -R /home/ctf/$BINARY; fi
