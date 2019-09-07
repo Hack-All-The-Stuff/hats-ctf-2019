@@ -11,7 +11,10 @@ def checkpad(s,r):
     r.recvuntil('Decrypted message:\n')
     return int(r.recvline().strip())+1
 
-r = process(['python2','./chal.py'])
+if args.REMOTE:
+    r = remote('localhost', 1401)
+else:
+    r = process(['python2','./chal.py'])
 print r.recvuntil('I recieved:\n')
 c = r.recvline().strip().decode('hex')
 c = [c[i] for i in range(len(c))] # c as a string

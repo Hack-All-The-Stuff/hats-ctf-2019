@@ -89,3 +89,11 @@ services:
         - CRYPTO_DIR=./crypto/Residues
     ports:
       - "1400:9999"
+  crypto_residues:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-crypto
+      args:
+        - CRYPTO_DIR=./crypto/AES-RSA
+    ports:
+      - "1401:9999"
