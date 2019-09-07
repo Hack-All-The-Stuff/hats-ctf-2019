@@ -3,7 +3,7 @@ from pwn import *
 path = './bof2'
 # Open local process for debugging
 if args.REMOTE:
-    p = remote('localhost', 1302)
+    p = remote('challs.hats.sg', 1302)
 else:
     p = process(path)
 # Open the file as a ELF so that we can extract information
