@@ -22,19 +22,19 @@ services:
     build: ./web/Commander5
     ports:
       - "1341:80"
-  truthy:
+  web_truthy:
     build: ./web/truthy
     ports:
       - "1342:80"
-  niftyhashing:
+  web_niftyhashing:
     build: ./web/NiftyHashing
     ports:
       - "1344:80"
-  extraction:
+  web_extraction:
     build: ./web/GlobalEXTRACTion
     ports:
       - "1345:80"
-  captcha:
+  web_captcha:
     build: ./web/CaptchyCaptcha
     ports:
       - "1346:80"
@@ -44,7 +44,7 @@ services:
       - "1347:80"
 
 
-  bof1:
+  pwn_bof1:
     build:
       context: .
       dockerfile: ./Dockerfile-pwn
@@ -53,7 +53,7 @@ services:
         - BINARY_DIR=./pwn/bof1
     ports:
       - "1301:9999"
-  bof2:
+  pwn_bof2:
     build:
       context: .
       dockerfile: ./Dockerfile-pwn
@@ -62,7 +62,7 @@ services:
         - BINARY_DIR=./pwn/bof2
     ports:
       - "1302:9999"
-  bof3:
+  pwn_bof3:
     build:
       context: .
       dockerfile: ./Dockerfile-pwn
@@ -71,7 +71,7 @@ services:
         - BINARY_DIR=./pwn/bof3
     ports:
       - "1303:9999"
-  ezprintf:
+  pwn_ezprintf:
     build:
       context: .
       dockerfile: ./Dockerfile-pwn
