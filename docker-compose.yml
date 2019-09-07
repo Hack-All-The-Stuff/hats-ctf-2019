@@ -44,6 +44,16 @@ services:
       - "1347:80"
 
 
+  pwn_bof:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=bof
+        - BINARY_DIR=./pwn/bof
+        - DISABLE_ASLR=true
+    ports:
+      - "1300:9999"
   pwn_bof1:
     build:
       context: .
