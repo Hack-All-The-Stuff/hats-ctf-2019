@@ -80,3 +80,12 @@ services:
         - BINARY_DIR=./pwn/ezprintf
     ports:
       - "1304:9999"
+
+  crypto_residues:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-crypto
+      args:
+        - CRYPTO_DIR=./crypto/Residues
+    ports:
+      - "1400:9999"
