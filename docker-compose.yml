@@ -2,6 +2,15 @@ version: '3'
 
 services:
 
+  monitoring_portainer:
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+      - "8000:8000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer_data:/data"
+
   web_commander:
     build: ./web/Commander
     ports:
@@ -107,3 +116,6 @@ services:
         - CRYPTO_DIR=./crypto/AES-RSA
     ports:
       - "1401:9999"
+
+volumes:
+  portainer_data:
