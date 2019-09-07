@@ -99,6 +99,15 @@ services:
         - BINARY_DIR=./pwn/ezprintf
     ports:
       - "1304:9999"
+  pwn_heapschool:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=heapschool
+        - BINARY_DIR=./pwn/HeapSchool/src
+    ports:
+      - "1305:9999"
 
   crypto_residues:
     build:
