@@ -124,6 +124,7 @@ services:
       args:
         - BINARY=poisonpp
         - BINARY_DIR=./pwn/Pick_your_poison_plus_plus/src
+        - WRITABLE_TMP=true
     ports:
       - "1307:9999"
 
