@@ -122,8 +122,8 @@ services:
       context: .
       dockerfile: ./Dockerfile-pwn
       args:
-        - BINARY=poison++
-        - BINARY_DIR=./pwn/Pick_your_poison++/src
+        - BINARY=poisonpp
+        - BINARY_DIR=./pwn/Pick_your_poison_plus_plus/src
     ports:
       - "1307:9999"
 
