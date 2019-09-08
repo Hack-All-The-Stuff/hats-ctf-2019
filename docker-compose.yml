@@ -108,6 +108,24 @@ services:
         - BINARY_DIR=./pwn/HeapSchool/src
     ports:
       - "1305:9999"
+  pwn_poison:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=poison
+        - BINARY_DIR=./pwn/Pick_your_poison/src
+    ports:
+      - "1306:9999"
+  pwn_poisonpp:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=poison++
+        - BINARY_DIR=./pwn/Pick_your_poison++/src
+    ports:
+      - "1307:9999"
 
   crypto_residues:
     build:
