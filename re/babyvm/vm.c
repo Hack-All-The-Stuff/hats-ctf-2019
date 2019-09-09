@@ -21,11 +21,17 @@ int vmstep(char op){
         case 'a':
             ax += stack[sp];
             break;
+        case 'd':
+            --ax;
+            break;
         case ' ':
         case 'e':
             return 0;
         case 'g':
             sp = ip;
+            break;
+        case 'i':
+            ++ax;
             break;
         case 'j':
             ip += ax - 1;
@@ -61,12 +67,13 @@ void vmexec(char* code){
         if(vmstep(code[ip]) == 0){
             break;
         }
-        printf("code : %c\nip : %d\nax : %d\n",code[ip],ip,ax); //remove for actual chal
+        //printf("code : %c\nip : %d\nax : %d\n",code[ip],ip,ax); //remove for actual chal
         ++ip;
     }
 }
 
 int main(int argc, char **argv){
     vmexec(argv[1]);
+    printf("%s\n",stack);
     return 0;
 }
