@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <string.h>
-char stack[1337] = {};
 int ip = 0;
 int sp = 0;
 int ax = 0;
-int vmstep(char op){
+int vmstep(char op,char* stack){
     switch(op | 0x20){
         case '0':
         case '1':
@@ -27,9 +26,6 @@ int vmstep(char op){
         case ' ':
         case 'e':
             return 0;
-        case 'g':
-            sp = ip;
-            break;
         case 'i':
             ++ax;
             break;
@@ -61,19 +57,20 @@ int vmstep(char op){
     }
     return 1;
 }
-void vmexec(char* code){
+void vmexec(char* code, char* stack){
     ip = 0;
     while(1){
-        if(vmstep(code[ip]) == 0){
+        printf("code : %c\nip : %d\n",code[ip],ip); //remove for actual chal
+        if(vmstep(code[ip],stack) == 0){
             break;
         }
-        //printf("code : %c\nip : %d\nax : %d\n",code[ip],ip,ax); //remove for actual chal
+        printf("ax : %d , stack[%d] = %x\n",ax,sp,stack[sp]);
         ++ip;
     }
 }
 
 int main(int argc, char **argv){
-    vmexec(argv[1]);
-    printf("%s\n",stack);
+    char stack[101];
+    vmexec(argv[1],stack);
     return 0;
 }
