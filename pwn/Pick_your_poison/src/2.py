@@ -5,8 +5,8 @@ import sys
 config = {
 	"elf" : "./poison",
 	"libc" : "",
-	"HOST" : "asd",
-	"PORT" : 123
+	"HOST" : "challs.hats.sg",
+	"PORT" : 1306
 }
 
 def exploit(r):

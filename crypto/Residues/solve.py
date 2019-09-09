@@ -21,8 +21,10 @@ def crt(mp, mq, p, q):
     s = mp*invert(q,p)*q+mq*invert(p,q)*p
     return s % (p*q)
 
-
-r = process(['python2','./chal.py'])
+if args.REMOTE:
+    r = remote('localhost', 1400)
+else:
+    r = process(['python2','./chal.py'])
 r.recvuntil('Here is the encrypted flag: ')
 c = int(r.recvline().strip(),16)
 cl = [enc(r,2),enc(r,4)]
@@ -65,6 +67,6 @@ for i in f:
         pt = pt.decode('hex')
     except:
         continue
-    if('flag' in pt):
+    if('HATS' in pt):
         print pt
 

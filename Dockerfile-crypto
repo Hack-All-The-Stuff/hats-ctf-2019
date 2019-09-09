@@ -1,0 +1,22 @@
+FROM python:2
+
+ARG CRYPTO_FILE=chal.py
+ARG CRYPTO_DIR
+
+ENV CRYPTO_FILE $CRYPTO_FILE
+ENV CRYPTO_DIR $CRYPTO_DIR
+
+RUN groupadd -r ctf && useradd -r -g ctf ctf
+RUN apt update && apt install -y lib32z1 xinetd
+RUN pip install pycryptodome
+RUN echo "Blocked by crypto_xinetd" > /etc/banner_fail
+COPY ./crypto.xinetd /etc/xinetd.d/crypto
+RUN sed -i s/helloworld/$CRYPTO_FILE/ /etc/xinetd.d/crypto
+COPY start_crypto.sh /start.sh
+RUN chmod +x /start.sh
+USER ctf
+
+COPY $CRYPTO_DIR /home/ctf/
+
+EXPOSE 9999
+CMD /start.sh

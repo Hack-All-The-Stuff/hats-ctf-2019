@@ -1,10 +1,14 @@
 FROM eadom/ctf_xinetd:latest
 ARG BINARY
 ARG BINARY_DIR
+ARG WRITABLE_TMP=false
 
 ENV BINARY $BINARY
 ENV BINARY_DIR $BINARY_DIR
 
 RUN rm flag helloworld
-COPY $BINARY_DIR /home/ctf/
+COPY $BINARY_DIR/flag /home/ctf/flag
+COPY $BINARY_DIR/$BINARY /home/ctf/$BINARY
+RUN chmod 644 /home/ctf/flag && chmod 755 /home/ctf/$BINARY
 RUN sed -i s/helloworld/$BINARY/ /etc/xinetd.d/ctf
+RUN if ${WRITABLE_TMP}; then mkdir /home/ctf/tmp && chmod 777 /home/ctf/tmp; fi

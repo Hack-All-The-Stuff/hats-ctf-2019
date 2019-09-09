@@ -1,12 +1,15 @@
 version: '3'
 
 services:
-  static_files:
-    build:
-      context: .
-      dockerfile: Dockerfile-files
+
+  monitoring_portainer:
+    image: portainer/portainer
     ports:
-      - "80:80"
+      - "9000:9000"
+      - "8000:8000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer_data:/data"
 
   web_commander:
     build: ./web/Commander
@@ -16,8 +19,51 @@ services:
     build: ./web/Commander2
     ports:
       - "1338:80"
+  web_commander3:
+    build: ./web/Commander3
+    ports:
+      - "1339:80"
+  web_commander4:
+    build: ./web/Commander4
+    ports:
+      - "1340:80"
+  web_commander5:
+    build: ./web/Commander5
+    ports:
+      - "1341:80"
+  web_truthy:
+    build: ./web/truthy
+    ports:
+      - "1342:80"
+  web_niftyhashing:
+    build: ./web/NiftyHashing
+    ports:
+      - "1344:80"
+  web_extraction:
+    build: ./web/GlobalEXTRACTion
+    ports:
+      - "1345:80"
+  web_captcha:
+    build: ./web/CaptchyCaptcha
+    ports:
+      - "1346:80"
+  bank:
+    build: ./web/BankOfWhitehacks
+    ports:
+      - "1347:80"
 
-  bof1:
+
+  pwn_bof:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=bof
+        - BINARY_DIR=./pwn/bof
+        - DISABLE_ASLR=true
+    ports:
+      - "1300:9999"
+  pwn_bof1:
     build:
       context: .
       dockerfile: ./Dockerfile-pwn
@@ -26,7 +72,7 @@ services:
         - BINARY_DIR=./pwn/bof1
     ports:
       - "1301:9999"
-  bof2:
+  pwn_bof2:
     build:
       context: .
       dockerfile: ./Dockerfile-pwn
@@ -35,7 +81,7 @@ services:
         - BINARY_DIR=./pwn/bof2
     ports:
       - "1302:9999"
-  bof3:
+  pwn_bof3:
     build:
       context: .
       dockerfile: ./Dockerfile-pwn
@@ -44,3 +90,60 @@ services:
         - BINARY_DIR=./pwn/bof3
     ports:
       - "1303:9999"
+  pwn_ezprintf:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=ezprintf
+        - BINARY_DIR=./pwn/ezprintf
+    ports:
+      - "1304:9999"
+  pwn_heapschool:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=heapschool
+        - BINARY_DIR=./pwn/HeapSchool/src
+    ports:
+      - "1305:9999"
+  pwn_poison:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=poison
+        - BINARY_DIR=./pwn/Pick_your_poison/src
+    ports:
+      - "1306:9999"
+  pwn_poisonpp:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-pwn
+      args:
+        - BINARY=poisonpp
+        - BINARY_DIR=./pwn/Pick_your_poison_plus_plus/src
+        - WRITABLE_TMP=true
+    ports:
+      - "1307:9999"
+
+  crypto_residues:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-crypto
+      args:
+        - CRYPTO_DIR=./crypto/Residues
+    ports:
+      - "1400:9999"
+  crypto_aes_rsa:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-crypto
+      args:
+        - CRYPTO_DIR=./crypto/AES-RSA
+    ports:
+      - "1401:9999"
+
+volumes:
+  portainer_data:

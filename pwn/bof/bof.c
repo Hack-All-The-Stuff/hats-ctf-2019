@@ -7,7 +7,6 @@ int main(){
     char name[0x400];
     setvbuf(stdin, 0, 2, 0);
     setvbuf(stdout, 0, 2, 0);
-    printf("%p\n", name);
-    scanf("%s", name);
+    read(0, name, 0x800);
     return 0;
 }
