@@ -7,7 +7,7 @@
 int fun(char* s) {
     char password[64];
     memcpy(password, s, 64);
-    char flag[] = "flag{no_m0r3_6pack_after_ctf}";
+    char flag[] = "HATS{no_m0r3_6pack_after_ctf}";
 
     if (strlen(password) != 29) {
         return 0;
