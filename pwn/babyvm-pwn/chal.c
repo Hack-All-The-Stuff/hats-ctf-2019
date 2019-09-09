@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <string.h>
-char stack[1337] = {};
 int ip = 0;
 int sp = 0;
 int ax = 0;
-int vmstep(char op){
+int vmstep(char op,char* stack){
     switch(op | 0x20){
         case '0':
         case '1':
@@ -58,11 +57,11 @@ int vmstep(char op){
     }
     return 1;
 }
-void vmexec(char* code){
+void vmexec(char* code, char* stack){
     ip = 0;
     while(1){
         //printf("code : %c\nip : %d\n",code[ip],ip); //remove for actual chal
-        if(vmstep(code[ip]) == 0){
+        if(vmstep(code[ip],stack) == 0){
             break;
         }
         //printf("ax : %d , stack[%d] = %x\n",ax,sp,stack[sp]);
@@ -72,6 +71,7 @@ void vmexec(char* code){
 
 int main(){
     char key[101]={},
+         stack[101]={},
          input[1337]={},
          code1[] = "2u4mmimmiup2u6mimimimup2u7mmimmup2u6mmimmiup2u7mmmimup2u4mmmup2u7mmimmup2u6mimmmup2u6mmimmiup2u4mmmup2u6mimmimiup2u6mmimmiup2u7mimmmiup2u5mup",
          code2[] = "2u5mmimimup2u6mmimmiup2u7mmmimup2u6mimmmiup2u6mmimimup2u7mimmmiup2u6mimmmiup2u6mimimimup2u6mmimimiup2u5mup",
@@ -79,17 +79,11 @@ int main(){
          code4[] = "2u5mmimimiup2u7mmmimup2u6mimimimiup2u6mimimimup2u6mmimimiup2u4mmmup2u6mimmimiup2u6mmimmiup2u7mimmmiup2u4mmmiup2u5mup",
          code5[] = "2u4mmimimup2u6mimimmup2u6mmmmiup2u6mmimimiup2u4mmmup2u7mmimup2u4mmmup";
     int i;
-    vmexec(code1);
+    vmexec(code1,stack);
     scanf("%1337s", &input);
-    vmexec(code2);
-    vmexec(input);
-    for(i=0;i<100;++i){
-        key[i] = stack[i];
-        if(key[i] == '\x00'){
-            break;
-        }
-    }
-    vmexec(code3);
+    vmexec(code2,stack);
+    vmexec(input,key);
+    vmexec(code3,stack);
     for(i=0;i<100;++i){
         if(key[i] == '\x00' && stack[i] == '\x00'){
             i = -1;
@@ -100,10 +94,10 @@ int main(){
         }
     }
     if(i != -1){
-        vmexec(code4);
+        vmexec(code4,stack);
         return 0;
     }
-    vmexec(code5);
+    vmexec(code5,stack);
     printf("%s\n", key);
     return 0;
 }
