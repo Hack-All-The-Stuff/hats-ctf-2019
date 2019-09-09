@@ -1,0 +1,12 @@
+why i no use makefile please dont ask
+
+gcc original.c -o original -mno-sse
+./extract.sh original
+python xor.py original.bytes
+
+copy contents of original.bytes.xor to `code` array in hex.c
+gcc hex.c -o hex -mno-sse
+python patch_header.py hex
+./extract.sh hex
+python format_bytes.py hex.bytes
+
