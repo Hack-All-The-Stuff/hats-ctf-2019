@@ -1,0 +1,35 @@
+gef config context.enable 0
+set logging file ans
+
+pie break *0x1661
+pie break *0x16de
+
+set $i = 0
+
+while ($i < 44)
+    set $c = 0x20
+    while ($c < 0x7f)
+        printf "%c\n", $c
+        pie run < ans
+        set $rax = 0x2c
+
+        set {char}($rbp-0x120+$i)=$c
+        c
+
+        set $b = 0
+        while ($b < $i)
+            c
+            set $b++
+        end
+
+        if $rax == 0
+            set logging on
+            printf "%c", $c
+            set logging off
+            loop_break
+        end
+
+        set $c++
+    end
+    set $i++
+end
