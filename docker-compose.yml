@@ -51,6 +51,10 @@ services:
     build: ./web/BankOfWhitehacks
     ports:
       - "1347:80"
+  babysql:
+    build: ./web/baby_sql
+    ports:
+      - "1350:80"
 
 
   pwn_bof:
