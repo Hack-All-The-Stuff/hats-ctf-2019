@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 int ip = 0;
 int sp = 0;
 int ax = 0;
@@ -67,7 +69,10 @@ void vmexec(char* code, char* stack){
         ++ip;
     }
 }
-
+void win(){
+    printf("You seem to have found a backdoor...");
+    system("/bin/sh");
+}
 int main(){
     char key[101]={},
          stack[101]={},

