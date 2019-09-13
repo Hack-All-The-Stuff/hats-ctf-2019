@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 int ip = 0;
 int sp = 0;
 int ax = 0;
