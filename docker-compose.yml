@@ -135,15 +135,15 @@ services:
         - WRITABLE_TMP=true
     ports:
       - "1307:9999"
-  babyvm-pwn:
-    build:
-      context: .
-      dockerfile: ./Dockerfile-pwn
-      args:
-        - BINARY=chal
-        - BINARY_DIR=./pwn/babyvm-pwn
-    ports:
-      - "1308:9999"
+  # babyvm-pwn:
+  #   build:
+  #     context: .
+  #     dockerfile: ./Dockerfile-pwn
+  #     args:
+  #       - BINARY=chal
+  #       - BINARY_DIR=./pwn/babyvm-pwn
+  #   ports:
+  #     - "1308:9999"
  
 
   crypto_residues:
