@@ -11,58 +11,58 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "portainer_data:/data"
 
-  web_commander:
-    build: ./web/Commander
-    ports:
-      - "1337:80"
-  web_commander2:
-    build: ./web/Commander2
-    ports:
-      - "1338:80"
-  web_commander3:
-    build: ./web/Commander3
-    ports:
-      - "1339:80"
-  web_commander4:
-    build: ./web/Commander4
-    ports:
-      - "1340:80"
-  web_commander5:
-    build: ./web/Commander5
-    ports:
-      - "1341:80"
-  web_truthy:
-    build: ./web/truthy
-    ports:
-      - "1342:80"
-  web_niftyhashing:
-    build: ./web/NiftyHashing
-    ports:
-      - "1344:80"
-  web_extraction:
-    build: ./web/GlobalEXTRACTion
-    ports:
-      - "1345:80"
-  web_captcha:
-    build: ./web/CaptchyCaptcha
-    ports:
-      - "1346:80"
-  bank:
-    build: ./web/BankOfWhitehacks
-    ports:
-      - "1347:80"
-  babysql:
-    build: ./web/baby_sql
-    ports:
-      - "1350:80"
-  unionsql:
-    build: ./web/union_sql
-    ports:
-      - "1351:80"
-  blindsql:
-    build: ./web/blind_sql
-    ports:
-      - "1355:80"
+  # web_commander:
+  #   build: ./web/Commander
+  #   ports:
+  #     - "1337:80"
+  # web_commander2:
+  #   build: ./web/Commander2
+  #   ports:
+  #     - "1338:80"
+  # web_commander3:
+  #   build: ./web/Commander3
+  #   ports:
+  #     - "1339:80"
+  # web_commander4:
+  #   build: ./web/Commander4
+  #   ports:
+  #     - "1340:80"
+  # web_commander5:
+  #   build: ./web/Commander5
+  #   ports:
+  #     - "1341:80"
+  # web_truthy:
+  #   build: ./web/truthy
+  #   ports:
+  #     - "1342:80"
+  # web_niftyhashing:
+  #   build: ./web/NiftyHashing
+  #   ports:
+  #     - "1344:80"
+  # web_extraction:
+  #   build: ./web/GlobalEXTRACTion
+  #   ports:
+  #     - "1345:80"
+  # web_captcha:
+  #   build: ./web/CaptchyCaptcha
+  #   ports:
+  #     - "1346:80"
+  # bank:
+  #   build: ./web/BankOfWhitehacks
+  #   ports:
+  #     - "1347:80"
+  # babysql:
+  #   build: ./web/baby_sql
+  #   ports:
+  #     - "1350:80"
+  # unionsql:
+  #   build: ./web/union_sql
+  #   ports:
+  #     - "1351:80"
+  # blindsql:
+  #   build: ./web/blind_sql
+  #   ports:
+  #     - "1355:80"
 
   pwn_bof:
     build:
