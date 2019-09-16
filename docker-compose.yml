@@ -59,7 +59,10 @@ services:
     build: ./web/union_sql
     ports:
       - "1351:80"
-
+  blindsql:
+    build: ./web/blind_sql
+    ports:
+      - "1355:80"
 
   pwn_bof:
     build:
