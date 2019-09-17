@@ -83,6 +83,8 @@ int main(){
          code4[] = "2u5mmimimiup2u7mmmimup2u6mimimimiup2u6mimimimup2u6mmimimiup2u4mmmup2u6mimmimiup2u6mmimmiup2u7mimmmiup2u4mmmiup2u5mup",
          code5[] = "2u4mmimimup2u6mimimmup2u6mmmmiup2u6mmimimiup2u4mmmup2u7mmimup2u4mmmup";
     int i;
+    setvbuf(stdin, 0, 2, 0);
+    setvbuf(stdout, 0, 2, 0);
     vmexec(code1,stack);
     scanf("%1337s", &input);
     vmexec(code2,stack);
